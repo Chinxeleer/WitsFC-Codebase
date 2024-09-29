@@ -26,7 +26,7 @@ def hungarian_cost_assignment(cost_matrix):
     optimalcost_zeros = np.zeros((num_rows, num_cols), dtype=bool)
 
     # Function to find the first uncovered zero
-    def find_a_zero():
+    def find_first_uncovered_zero():
         for i in range(num_rows):
             for j in range(num_cols):
                 if cost_matrix[i, j] == 0 and not row_covered[i] and not col_covered[j]:
@@ -93,10 +93,10 @@ def hungarian_cost_assignment(cost_matrix):
 
     # Main loop: continue until all columns are covered
     while np.sum(col_covered) < num_cols:
-        zero_pos = find_a_zero()
+        zero_pos = find_first_uncovered_zero()
         while zero_pos is None:
             adjust_matrix()
-            zero_pos = find_a_zero()
+            zero_pos = find_first_uncovered_zero()
 
         row, col = zero_pos
         optimal_zero(row, col)
