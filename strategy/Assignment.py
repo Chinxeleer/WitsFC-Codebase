@@ -3,9 +3,12 @@ import numpy as np
 
 def euclidean_distance(teammate_positions, formation_positions):
 
-    array1 = np.array(teammate_positions)
-    array2 = np.array(formation_positions)
-    cost_matrix = np.sqrt(np.sum((array1[:, np.newaxis] - array2) ** 2, axis=2))
+    # Convert input lists to NumPy arrays
+    teammates = np.array(teammate_positions)
+    formations = np.array(formation_positions)
+    
+    # Calculate the Euclidean distance cost matrix
+    cost_matrix = np.linalg.norm(teammates[:, np.newaxis] - formations, axis=2)
     return cost_matrix
 
 
