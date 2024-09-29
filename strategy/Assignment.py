@@ -23,7 +23,7 @@ def hungarian_cost_assignment(cost_matrix):
     row_covered = np.zeros(num_rows, dtype=bool)
     col_covered = np.zeros(num_cols, dtype=bool)
     masked_zeros = np.zeros((num_rows, num_cols), dtype=bool)
-    primed_zeros = np.zeros((num_rows, num_cols), dtype=bool)
+    optimalcost_zeros = np.zeros((num_rows, num_cols), dtype=bool)
 
     # Function to find the first uncovered zero
     def find_a_zero():
@@ -54,7 +54,7 @@ def hungarian_cost_assignment(cost_matrix):
 
     # Find the prime in a given row
     def find_optimal_zero_in_row(row):
-        prime_col = np.where(primed_zeros[row])[0]
+        prime_col = np.where(optimalcost_zeros[row])[0]
         return prime_col[0] if len(prime_col) > 0 else -1
 
     # Find the star in a given column
@@ -64,7 +64,7 @@ def hungarian_cost_assignment(cost_matrix):
 
     # Prime a zero (mark a zero that could lead to an optimal assignment)
     def optimal_zero(row, col):
-        primed_zeros[row, col] = True
+        optimalcost_zeros[row, col] = True
 
     # Uncover all rows and columns
     def uncover_all_rows_and_columns():
@@ -73,9 +73,9 @@ def hungarian_cost_assignment(cost_matrix):
 
     # Adjust the matrix by adding/subtracting the minimum uncovered value
     def adjust_matrix():
-        min_uncovered = np.min(cost_matrix[~row_covered][:, ~col_covered])
-        cost_matrix[~row_covered] -= min_uncovered
-        cost_matrix[:, col_covered] += min_uncovered
+        minimum_uncovered = np.min(cost_matrix[~row_covered][:, ~col_covered])
+        cost_matrix[~row_covered] -= minimum_uncovered
+        cost_matrix[:, col_covered] += minimum_uncovered
 
     # Initial step: star all uncovered zeros and cover corresponding columns
     for i in range(num_rows):
@@ -119,7 +119,7 @@ def hungarian_cost_assignment(cost_matrix):
 
             # Reset covers and primes
             uncover_all_rows_and_columns()
-            primed_zeros[:] = False
+            optimalcost_zeros[:] = False
             cover_columns()
         else:
             # Cover the row of the primed zero and uncover the column of the starred zero
