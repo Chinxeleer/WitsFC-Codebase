@@ -17,12 +17,60 @@ def GenerateBasicFormation(current_playmode, world_playmodes):
         np.array([12, -1]),  #                          p11
     ]
     if current_playmode == world_playmodes.M_OUR_CORNER_KICK:
-        return [np.array([])]
+        return [
+            np.array([-13, 0]),
+            np.array([5, -5]),
+            np.array([5, 0]),
+            np.array([5, 5]),
+            np.array([-5, 0]),
+            np.array([-10, -5]),
+            np.array([-10, 0]),
+            np.array([-10, 5]),
+            np.array([-13, -7]),
+            np.array([-14, -5]),
+            np.array([-13, -7]),
+        ]
     if current_playmode == world_playmodes.M_OUR_FREE_KICK:
-        return [np.array()]
+        return [
+            np.array([-13, 0]),
+            np.array([-13, 0]),
+            np.array([-13, 0]),
+            np.array([-13, 0]),
+            np.array([-13, 0]),
+            np.array([-13, 0]),
+            np.array([-13, 0]),
+            np.array([-13, 0]),
+            np.array([-13, 0]),
+            np.array([-13, 0]),
+            np.array([-13, 0]),
+        ]
     if current_playmode == world_playmodes.M_OUR_GOAL_KICK:
-        return formation  #                          p11]
+        return [
+            np.array([-13, 0]),
+            np.array([-13, 0]),
+            np.array([-13, 0]),
+            np.array([-13, 0]),
+            np.array([-13, 0]),
+            np.array([-13, 0]),
+            np.array([-13, 0]),
+            np.array([-13, 0]),
+            np.array([-13, 0]),
+            np.array([-13, 0]),
+            np.array([-13, 0]),
+        ]
     if current_playmode == world_playmodes.M_OUR_KICK_OFF:
-        return formation
+        return [
+            np.array([-13, 0]),
+            np.array([-13, 0]),
+            np.array([-13, 0]),
+            np.array([-13, 0]),
+            np.array([-13, 0]),
+            np.array([-13, 0]),
+            np.array([-13, 0]),
+            np.array([-13, 0]),
+            np.array([-13, 0]),
+            np.array([-13, 0]),
+            np.array([-13, 0]),
+        ]
 
     return formation
