@@ -308,8 +308,8 @@ class Agent(Base_Agent):
             )
         else:
             drawer.clear("status")
-
-        formation_positions = GenerateBasicFormation()
+        # ----------------------------------------------------- Can change the formation of the players here
+        formation_positions = GenerateBasicFormation(strategyData.play_mode, self.world)
         point_preferences = role_assignment(
             strategyData.teammate_positions, formation_positions
         )
